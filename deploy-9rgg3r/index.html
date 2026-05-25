@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hello World</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0c0c0c;
+      --ink: #f0ece2;
+      --accent: #c8a96e;
+      --muted: #4a4740;
+      --line: rgba(200,169,110,0.25);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'DM Mono', monospace;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    /* grain overlay */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 100;
+      opacity: 0.5;
+    }
+
+    .frame {
+      position: relative;
+      width: min(680px, 90vw);
+      padding: 4rem 3rem;
+      border: 1px solid var(--line);
+      animation: fadeUp 1s ease both;
+    }
+
+    .frame::before, .frame::after {
+      content: '';
+      position: absolute;
+      width: 12px; height: 12px;
+      border-color: var(--accent);
+      border-style: solid;
+    }
+    .frame::before { top: -1px; left: -1px; border-width: 2px 0 0 2px; }
+    .frame::after  { bottom: -1px; right: -1px; border-width: 0 2px 2px 0; }
+
+    .label {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 0.3s both;
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5rem);
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.9s ease 0.5s both;
+    }
+
+    h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .divider {
+      width: 3rem;
+      height: 1px;
+      background: var(--accent);
+      margin: 1.5rem 0;
+      opacity: 0;
+      animation: expandW 0.8s ease 0.8s both;
+    }
+
+    p {
+      font-size: 0.8rem;
+      line-height: 2;
+      color: #a09c94;
+      max-width: 38ch;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1s both;
+    }
+
+    .meta {
+      margin-top: 2.5rem;
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      opacity: 0;
+      animation: fadeUp 0.8s ease 1.2s both;
+    }
+
+    .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease-in-out 1.5s infinite;
+    }
+
+    .meta-text {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* decorative vertical line */
+    .vline {
+      position: absolute;
+      right: -3rem;
+      top: 20%;
+      width: 1px;
+      height: 60%;
+      background: linear-gradient(to bottom, transparent, var(--line), transparent);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes expandW {
+      from { width: 0; opacity: 0; }
+      to   { width: 3rem; opacity: 1; }
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50%       { opacity: 0.4; transform: scale(0.6); }
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <div class="label">index.html — v1.0.0</div>
+    <h1>Hello,<br><em>World.</em></h1>
+    <div class="divider"></div>
+    <p>Your first page is live. Edit this file to begin building something extraordinary.</p>
+    <div class="meta">
+      <span class="dot"></span>
+      <span class="meta-text">Ready &nbsp;·&nbsp; 2026</span>
+    </div>
+    <div class="vline"></div>
+  </div>
+</body>
+</html>
