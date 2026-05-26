@@ -1,0 +1,9 @@
+To convert you bianry 3d file with 3dpf encoding to Gcode , you can use "prashant-super-foramtter" 
+
+to convert install gloablly 
+
+npm i -g prashant-super-foramtter
+
+run command 
+
+"prashant-super-foramtter gcode file.3dpf outpudir
